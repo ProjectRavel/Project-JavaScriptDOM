@@ -59,11 +59,6 @@ function getRemainingTime() {
   const minutes = Math.floor((remaining % oneHour) / oneMinute);
   const secs = Math.floor((remaining % oneMinute) / oneSecs);
 
-  console.log("hari:" + days);
-  console.log("jam:" + hours);
-  console.log("menit:" + minutes);
-  console.log("detik:" + secs);
-
   const values = [days, hours, minutes, secs];
 
   timeouts.forEach((timeout, index) => {
@@ -72,9 +67,6 @@ function getRemainingTime() {
         timeout.parentElement.parentElement.remove()
     }
   });
-  if(remaining < 0){
-    
-  }
 }
 setInterval(() => {
   getRemainingTime();
