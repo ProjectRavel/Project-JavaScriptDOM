@@ -27,7 +27,7 @@ const giveaway = document.querySelector(".giveaway");
 const deadline = document.querySelector(".deadline-formal");
 const timeouts = document.querySelectorAll(".deadline-format h4");
 
-let futureDate = new Date(2025, 0, 11, 12, 0, 0);
+let futureDate = new Date(2025, 2, 28, 1, 0, 0);
 
 console.log(futureDate);
 
@@ -49,29 +49,33 @@ function getRemainingTime() {
   // 1h = 60m
   // 1d = 24h
 
-  const oneDay = 24 * 60 * 60 * 1000
-  const oneHour = 60 * 60 * 1000
-  const oneMinute = 60 * 1000
-  const oneSecs = 1000
+  const oneDay = 24 * 60 * 60 * 1000;
+  const oneHour = 60 * 60 * 1000;
+  const oneMinute = 60 * 1000;
+  const oneSecs = 1000;
 
-  const days = Math.floor(remaining/oneDay)
-  const hours = Math.floor((remaining % oneDay)/oneHour)
-  const minutes = Math.floor((remaining % oneHour)/oneMinute)
-  const secs = Math.floor((remaining % oneMinute)/oneSecs)
+  const days = Math.floor(remaining / oneDay);
+  const hours = Math.floor((remaining % oneDay) / oneHour);
+  const minutes = Math.floor((remaining % oneHour) / oneMinute);
+  const secs = Math.floor((remaining % oneMinute) / oneSecs);
 
-  console.log('hari:'+ days)
-  console.log('jam:' + hours)
-  console.log('menit:' + minutes)
-  console.log('detik:' + secs)
+  console.log("hari:" + days);
+  console.log("jam:" + hours);
+  console.log("menit:" + minutes);
+  console.log("detik:" + secs);
 
-  const values = [days, hours, minutes, secs]
+  const values = [days, hours, minutes, secs];
 
-  timeouts.forEach((timeout, index)=>{
-    timeout.innerHTML = values[index]
-  })
+  timeouts.forEach((timeout, index) => {
+    timeout.innerHTML = values[index];
+    if (remaining < 0) {
+        timeout.parentElement.parentElement.remove()
+    }
+  });
+  if(remaining < 0){
+    
+  }
 }
-
 setInterval(() => {
-    getRemainingTime();
+  getRemainingTime();
 }, 1000);
-
